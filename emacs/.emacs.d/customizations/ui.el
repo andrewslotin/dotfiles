@@ -9,6 +9,7 @@
 
 ;; Show line numbers
 (global-linum-mode)
+(setq linum-format "%d ")
 
 ;; You can uncomment this to remove the graphical toolbar at the top. After
 ;; awhile, you won't need the toolbar.
@@ -26,7 +27,7 @@
 ;; for a more technical explanation.
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 (add-to-list 'load-path "~/.emacs.d/themes")
-(load-theme 'tomorrow-night-bright t)
+(load-theme 'zenburn t)
 
 ;; increase font size for better readability
 (set-face-attribute 'default nil :height 140)

@@ -17,6 +17,10 @@
 
 ;; Highlight current line
 (global-hl-line-mode 1)
+(set-face-attribute 'hl-line
+                    :background "color-235"
+                    :underline nil)
+(set-face-foreground 'highlight nil)
 
 ;; Interactive search key bindings. By default, C-s runs
 ;; isearch-forward, so this swaps the bindings.
@@ -33,6 +37,7 @@
 ;; http://www.emacswiki.org/emacs/SavePlace
 (require 'saveplace)
 (setq-default save-place t)
+
 ;; keep track of saved places in ~/.emacs.d/places
 (setq save-place-file (concat user-emacs-directory "places"))
 
@@ -42,7 +47,6 @@
 (setq backup-directory-alist `(("." . ,(concat user-emacs-directory
                                                "backups"))))
 (setq auto-save-default nil)
-
 
 ;; comments
 (defun toggle-comment-on-line ()
