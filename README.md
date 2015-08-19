@@ -36,6 +36,7 @@ Available config layers
 -----------------------
 
 * `bash`
+* `emacs` — based on [flyingmachine/emacs-for-clojure](https://github.com/flyingmachine/emacs-for-clojure.git)
 * `fzf`
 * `git`
 * `ruby`

@@ -1,4 +1,4 @@
-DIRS := bash fzf git ruby tmux
+DIRS := bash emacs fzf git ruby tmux
 
 help:
 	@echo "Link all layers: make all"
