@@ -21,6 +21,10 @@
 
   ;; Jump to definition key binding
   (local-set-key (kbd "M-.") 'godef-jump-other-window)
+
+  ;; Autocompletion
+  (set (make-local-variable 'company-backends) '(company-go))
+  (company-mode)
 )
 
 (add-hook 'go-mode-hook 'custom-go-mode-hook)

@@ -149,7 +149,7 @@
  '(coffee-tab-width 2)
  '(package-selected-packages
    (quote
-    (flycheck go-mode dash-at-point tagedit smex rainbow-delimiters projectile paredit magit ido-ubiquitous exec-path-from-shell clojure-mode-extra-font-locking cider))))
+    (company-go flycheck go-mode dash-at-point tagedit smex rainbow-delimiters projectile paredit magit ido-ubiquitous exec-path-from-shell clojure-mode-extra-font-locking cider))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
