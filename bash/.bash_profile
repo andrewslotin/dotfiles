@@ -15,6 +15,7 @@ export NLS_LANG="AMERICAN_AMERICA.UTF8"
 export GIT_BRANCH_NAME_MAX_LENGTH=100
 export PS1="\u:${PATH_COLOR}\W${NORMAL}\$(__git_ps1 \" [${GIT_BRANCH_COLOR}%0.${GIT_BRANCH_NAME_MAX_LENGTH}s${NORMAL}]\")\$ "
 export EDITOR="emacsclient -t -a ''"
+export TERM=xterm-256color
 export PATH=$HOME/.bin:/usr/local/sbin:/usr/local/bin:$PATH:$GOPATH/bin
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
