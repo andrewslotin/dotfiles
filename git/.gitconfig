@@ -1,0 +1,19 @@
+[user]
+	name = Andrew Slotin
+	email = andrew.slotin@gmail.com
+[core]
+	excludesfile = /Users/suddendef/.gitignore
+[push]
+	default = tracking
+[branch]
+	autosetuprebase = always
+[hub]
+	protocol = https
+[log]
+	abbrevCommit = true
+	graph = true
+[format]
+	pretty = format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
+[alias]
+	logg = log --graph
+	changelog = log --format='* %s' --invert-grep --grep='^Merge ' --grep='^Bump '
