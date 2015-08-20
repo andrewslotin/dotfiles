@@ -18,6 +18,7 @@
 ;; Highlight current line
 (global-hl-line-mode 1)
 (set-face-attribute 'hl-line nil
+                    :foreground nil
                     :background "color-235"
                     :underline nil)
 (set-face-foreground 'highlight nil)
