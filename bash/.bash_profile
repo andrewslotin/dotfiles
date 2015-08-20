@@ -4,6 +4,10 @@ NORMAL="\[\033[0m\]"
 
 GIT_PS1_SHOWDIRTYSTATE=true
 
+# Increase the number of open files in OS X
+# http://krypted.com/mac-os-x/maximum-files-in-mac-os-x/XS
+ulimit -n 512
+
 source /usr/local/etc/bash_completion.d/git-completion.bash
 source /usr/local/etc/bash_completion.d/git-prompt.sh
 source "$HOME/.fzf.bash"
