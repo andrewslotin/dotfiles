@@ -32,6 +32,18 @@ make bash
 List of available layers together with a short usage message is available by running `make help`, which
 is a default target.
 
+Emacs 3rd-party Dependencies
+----------------------------
+
+This emacs config includes `go-mode` with [`godef`](https://github.com/rogpeppe/godef) for Go-To Definition,
+[`gocode`](https://github.com/nsf/gocode) for autocompletion and [`goflymake`](https://github.com/dougm/goflymake)
+for syntax check enabled. To use them, you need to install following
+Go packages:
+
+```bash
+go get -u github.com/rogpeppe/godef github.com/nsf/gocode github.com/dougm/goflymake
+```
+
 Available config layers
 -----------------------
 
