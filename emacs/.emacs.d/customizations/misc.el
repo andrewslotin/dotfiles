@@ -10,3 +10,6 @@
 
 ;; Go straight to scratch buffer on startup
 (setq inhibit-startup-message t)
+
+;; Use GNU version of ls on OS X obtained via `brew install coreutils`
+(setq insert-directory-program (executable-find "gls"))
