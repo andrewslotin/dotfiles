@@ -135,6 +135,9 @@
 ;; These customizations make editing a bit nicer.
 (load "editing.el")
 
+;; OS X clipboard integration
+(load "osx-clipboard-integration.el")
+
 ;; Hard-to-categorize customizations
 (load "misc.el")
 
