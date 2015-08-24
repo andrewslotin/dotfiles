@@ -138,6 +138,9 @@
 ;; OS X clipboard integration
 (load "osx-clipboard-integration.el")
 
+;; Enable mouse support
+(load "mouse.el")
+
 ;; Hard-to-categorize customizations
 (load "misc.el")
 
