@@ -26,6 +26,20 @@ export PATH=$HOME/.bin:/usr/local/sbin:/usr/local/bin:$PATH:$GOPATH/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.bashrc" ]] && source ~/.bashrc
 
+### gocd -- navigate Go packages in $GOPATH ###
 function gocd() {
-  cd $GOPATH/src/$1
+  cd "$GOPATH/src/$1"
 }
+
+function __gocd_complete() {
+  COMPREPLY=()
+
+  local cur="${COMP_WORDS[COMP_CWORD]}"
+  
+  COMPREPLY=( $(for pkg in $( echo "${GOPATH[@]}/src/$cur*/" ); do echo ${pkg#$GOPATH/src/}; done) )
+
+  return 0
+}
+
+complete -o nospace -F __gocd_complete gocd
+### End of gocd ###
