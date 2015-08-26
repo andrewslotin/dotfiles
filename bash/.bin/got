@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ $# -gt 0 ] ; then
+  go test -gocheck.f="$@"
+else
+  go test
+fi
+
+exit $?
