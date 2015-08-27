@@ -26,7 +26,10 @@ export PATH=$HOME/.bin:/usr/local/sbin:/usr/local/bin:$PATH:$GOPATH/bin
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.bashrc" ]] && source ~/.bashrc
 
+###############################################
 ### gocd -- navigate Go packages in $GOPATH ###
+###############################################
+
 function gocd() {
   cd "$GOPATH/src/$1"
 }
@@ -42,4 +45,25 @@ function __gocd_complete() {
 }
 
 complete -o nospace -F __gocd_complete gocd
+
 ### End of gocd ###
+
+######################################################
+### Complete ssh host from .ssh/known_hosts on TAB ###
+######################################################
+
+function __ssh_complete()
+{
+  COMPREPLY=()
+
+  local cur="${COMP_WORDS[COMP_CWORD]}"
+  local opts=$(awk '{split($1,hosts,","); for (i in hosts) {if (hosts[i] !~ /[0-9]+(\.[0-9]+){3}/) print hosts[i]}}' "$HOME/.ssh/known_hosts" | sort | uniq)
+
+  COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+
+  return 0
+}
+
+complete -o nospace -F __ssh_complete ssh
+
+### End of ssh completion ###
