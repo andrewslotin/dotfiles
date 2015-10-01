@@ -2,7 +2,7 @@
 	name = Andrew Slotin
 	email = andrew.slotin@gmail.com
 [core]
-	excludesfile = /Users/suddendef/.gitignore
+	excludesfile = ~/.gitignore
 [push]
 	default = tracking
 [branch]
