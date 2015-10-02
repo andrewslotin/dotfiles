@@ -17,3 +17,5 @@
 [alias]
 	logg = log --graph
 	changelog = log --format='* %s' --invert-grep --grep='^Merge ' --grep='^Bump '
+[commit]
+	template = ~/.gitmessage
