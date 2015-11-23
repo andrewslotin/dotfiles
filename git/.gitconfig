@@ -13,7 +13,7 @@
 	abbrevCommit = true
 	graph = true
 [format]
-	pretty = format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
+	pretty = format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset
 [alias]
 	logg = log --graph
 	changelog = log --format='* %s' --invert-grep --grep='^Merge ' --grep='^Bump '
