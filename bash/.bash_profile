@@ -23,6 +23,8 @@ export EDITOR="emacsclient -t"
 export TERM=xterm-256color
 export PATH=$HOME/.bin:/usr/local/sbin:/usr/local/bin:$PATH:$GOPATH/bin
 
+alias e="$EDITOR"
+
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.bashrc" ]] && source ~/.bashrc
 
