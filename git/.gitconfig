@@ -19,3 +19,5 @@
 	changelog = log --format='* %s' --invert-grep --grep='^Merge ' --grep='^Bump '
 [commit]
 	template = ~/.gitmessage
+[url "git@github.com:"]
+	insteadOf = https://github.com/
