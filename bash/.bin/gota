@@ -1,8 +1,13 @@
 #!/bin/bash
 
-declare paths=$(for t in $(find . -name "*_test.go" -not -path "./.go/*"); do dirname $t; done | sort | uniq)
-declare -i return_value=0
+VENDOR_DIR=.go
+if [ $GO15VENDOREXPERIMENT == "1" ]; then
+  VENDOR_DIR=vendor
+fi
 
+declare paths=$(for t in $(find . -name "*_test.go" -not -path "./$VENDOR/*"); do dirname $t; done | sort | uniq)
+
+declare -i return_value=0
 echo -e "\033[0;36mChecking for compile-time errors\033[0m"
 goba || exit 1
 
