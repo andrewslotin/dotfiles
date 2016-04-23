@@ -1,6 +1,11 @@
 #!/bin/bash
 
-declare paths=$(for t in $(find . -name "*_test.go" -not -path "./.go/*"); do dirname $t; done | sort | uniq)
+VENDOR_DIR=.go
+if [[ $GO15VENDOREXPERIMENT == "1" || "$(go version)" =~ "go1.6" ]]; then
+  VENDOR_DIR=vendor
+fi
+
+declare paths=$(for t in $(find . -name "*_test.go" -not -path "./$VENDOR_DIR/*"); do dirname $t; done | sort | uniq)
 declare -i return_value=0
 
 for path in ${paths[@]}; do
