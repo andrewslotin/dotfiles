@@ -25,6 +25,12 @@ export PATH=$HOME/.bin:/usr/local/sbin:/usr/local/bin:$PATH:$GOPATH/bin
 
 alias e="$EDITOR"
 
+# Use colordiff instead of diff if installed. To install colordiff run:
+#   brew install colordiff
+if command -v colordiff 2>&1 >/dev/null; then
+  alias diff="colordiff"
+fi
+
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.bashrc" ]] && source ~/.bashrc
 
