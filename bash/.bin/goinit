@@ -1,0 +1,92 @@
+#!/bin/bash
+
+set -e
+
+GITHUB_USERNAME=andrewslotin
+PROJECT=$1
+
+while [ -z "$PROJECT" ]; do
+  echo -n "New project name: "
+  read PROJECT
+done
+
+PROJECT_DIR=$GOPATH/src/github.com/$GITHUB_USERNAME/$PROJECT
+
+mkdir -p $PROJECT_DIR
+cd $PROJECT_DIR
+
+# Makefile
+echo | sed -e "s~@@PROJECT@@~$PROJECT~g" -e "s~@@GITHUB_USER@@~$GITHUB_USERNAME~g" > Makefile <<"EOF"
+NAME := @@PROJECT@@
+PREFIX ?= usr/local
+VERSION := $$(git rev-parse HEAD | cut -c -6)
+GOVERSION := $(shell go version)
+BUILDTIME := $(shell date -u +"%Y-%m-%dT%H:%M:%SZ")
+BUILDDATE := $(shell date -u +"%B %d, %Y")
+BUILDER := $(shell echo "`git config user.name` <`git config user.email`>")
+PKG_RELEASE ?= 1
+PROJECT_URL := "https://github.com/@@GITHUB_USER@@/$(NAME)"
+LDFLAGS := -X 'main.version=$(VERSION)' \
+           -X 'main.buildTime=$(BUILDTIME)' \
+           -X 'main.builder=$(BUILDER)' \
+           -X 'main.buildGoVersion=$(GOVERSION)'
+
+# development tasks
+PACKAGES := $$(go list ./... | grep -v /vendor/ | grep -v /cmd/)
+test:
+	go test $(PACKAGES)
+
+benchmark:
+	@echo "Running tests..."
+	@go test -bench=. $(PACKAGES)
+
+# build tasks
+SOURCES := $(shell find . -name '*.go')
+
+build: $(SOURCES)
+	go build -ldflags "$(LDFLAGS)" -o $(NAME) main.go
+
+all: test build
+.DEFAULT_GOAL := all
+
+clean:
+	go clean
+
+.PHONY: all build test benchmark clean
+EOF
+
+# main.go
+echo | gofmt > main.go <<EOF
+package main
+
+import (
+	"flag"
+	"fmt"
+	"os"
+)
+
+var (
+	version = "n/a"
+	buildTime = "n/a"
+	builder = "n/a"
+	buildGoVersion = "n/a"
+)
+
+func init() {
+	flag.Usage = func () {
+		fmt.Fprintf(os.Stderr, "%s version %s (%s)\nBuild date: %s\nBuilder: %s\n", os.Args[0], version, buildGoVersion, buildTime, builder)
+		flag.PrintDefaults()
+	}
+}
+
+func main() {
+	flag.Parse()
+	// Place your code here
+}
+EOF
+
+# .gitignore
+echo "$PROJECT" > .gitignore
+
+# Init git repository
+git init
