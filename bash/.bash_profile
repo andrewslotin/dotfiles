@@ -24,6 +24,7 @@ export TERM=xterm-256color
 export PATH=$HOME/.bin:/usr/local/sbin:/usr/local/bin:$PATH:$GOPATH/bin
 
 alias e="$EDITOR"
+alias emacs="emacs -nw"
 
 # Use colordiff instead of diff if installed. To install colordiff run:
 #   brew install colordiff
