@@ -64,21 +64,36 @@ import (
 )
 
 var (
-	version = "n/a"
-	buildDate = "n/a"
-	builder = "n/a"
+	binaryName     = os.Args[0]
+	version        = "n/a"
+	buildDate      = "n/a"
+	builder        = "n/a"
 	buildGoVersion = "n/a"
+
+	args struct {
+		version bool
+	}
 )
 
 func init() {
+	flag.BoolVar(&args.version, "version", false, "Print version and quit")
 	flag.Usage = func () {
-		fmt.Fprintf(os.Stderr, "%s version %s (%s)\nBuild date: %s\nBuilder: %s\n", os.Args[0], version, buildGoVersion, buildTime, builder)
+		fmt.Fprintf(os.Stderr, "Usage: %s [OPTIONS]\nOptions:\n", binaryName)
 		flag.PrintDefaults()
 	}
 }
 
+func printVersion() {
+	fmt.Printf("%s version %s built with %s by %s on %s\n", binaryName, version, buildGoVersion, builder, buildDate)
+}
+
 func main() {
 	flag.Parse()
+	if args.version {
+		printVersion()
+		os.Exit(0)
+	}
+
 	// Place your code here
 }
 EOF
