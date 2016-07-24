@@ -40,10 +40,9 @@ benchmark:
 	@go test -bench=. $(PACKAGES)
 
 # build tasks
-SOURCES := $(shell find . -name '*.go')
-
+SOURCES := $(shell find . -type f \(-name '*.go' -and -not -name '*_test.go'\) )
 build: $(SOURCES)
-	go build -ldflags "$(LDFLAGS)" -o $(NAME) main.go
+	go build -ldflags "$(LDFLAGS)" -o $(NAME)
 
 all: test build
 .DEFAULT_GOAL := all
