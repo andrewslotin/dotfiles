@@ -21,7 +21,7 @@ export PS1="\u:${PATH_COLOR}\W${NORMAL}\$(__git_ps1 \" [${GIT_BRANCH_COLOR}%0.${
 export ALTERNATE_EDITOR=""
 export EDITOR="emacsclient -t"
 export TERM=xterm-256color
-export PATH=$HOME/.bin:/usr/local/sbin:/usr/local/bin:$PATH:$GOPATH/bin
+export PATH=$HOME/.bin:/usr/local/sbin:/usr/local/bin:$PATH:$GOPATH/bin:$HOME/.cargo/bin
 
 alias e="$EDITOR"
 alias emacs="emacs -nw"
