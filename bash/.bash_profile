@@ -74,5 +74,6 @@ function __ssh_complete()
 }
 
 complete -o nospace -F __ssh_complete ssh
+complete -o nospace -F __ssh_complete scp
 
 ### End of ssh completion ###
