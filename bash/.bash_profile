@@ -66,9 +66,14 @@ function __ssh_complete()
   COMPREPLY=()
 
   local cur="${COMP_WORDS[COMP_CWORD]}"
+  if [[ "$cur" =~ "@" ]]; then
+    local user=${cur%%@*}
+    local prefix="@"
+  fi
+  
   local opts=$(awk '{split($1,hosts,","); for (i in hosts) {if (hosts[i] !~ /[0-9]+(\.[0-9]+){3}/) print hosts[i]}}' "$HOME/.ssh/known_hosts" | sort | uniq)
 
-  COMPREPLY=( $(compgen -W "${opts}" -- "${cur}") )
+  COMPREPLY=( $(compgen -W "${opts}" -P "${prefix}" -- "${cur#*@}") )
 
   return 0
 }
