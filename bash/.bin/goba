@@ -1,19 +1,21 @@
 #!/bin/bash
 
-VENDOR_DIR=.go
-if [[ $GO15VENDOREXPERIMENT == "1" || "$(go version)" =~ "go1.6" ]]; then
-  VENDOR_DIR=vendor
-fi
+export GOGC=off
 
-declare paths=$(for t in $(find . -name "*_test.go" -not -path "./$VENDOR_DIR/*"); do dirname $t; done | sort | uniq)
-declare -i return_value=0
+declare -i retval=0
+for pkg in `go list ./... | fgrep -v 'vendor/'`; do
+  go test -i $pkg
+  declare -i code=$?
 
-for path in ${paths[@]}; do
-  if go test -i $path; then
-    echo "$path...ok"
+  if [ $code -eq 0 ]; then
+    echo "$pkg...ok"
   else
-    return_value=1
+    echo "$pkg...fail"
+  fi
+  
+  if [ $retval -eq 0 ]; then
+    retval=$code
   fi
 done
 
-exit $return_value
+exit $retval

@@ -1,19 +1,11 @@
 #!/bin/bash
 
-VENDOR_DIR=.go
-if [[ $GO15VENDOREXPERIMENT == "1" || "$(go version)" =~ "go1.6" ]]; then
-  VENDOR_DIR=vendor
-fi
+export GOGC=off
 
-declare paths=$(for t in $(find . -name "*_test.go" -not -path "./$VENDOR_DIR/*"); do dirname $t; done | sort | uniq)
-
-declare -i return_value=0
 echo -e "\033[0;36mChecking for compile-time errors\033[0m"
 goba || exit 1
 
 echo -e "\033[0;36mRunning tests\033[0m"
-for path in ${paths[@]}; do
-  go test $path || return_value=1
-done
+go test $(go list ./... | fgrep -v 'vendor/')
 
-exit $return_value
+exit $?
