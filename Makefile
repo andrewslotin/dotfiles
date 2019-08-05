@@ -1,4 +1,4 @@
-DIRS := bash emacs fzf git ruby tmux
+DIRS := bash emacs fzf git ruby tmux iterm
 
 help:
 	@echo "Link all layers: make all"
@@ -11,7 +11,6 @@ help:
 all: $(DIRS)
 
 $(DIRS):
-	@echo "Linking $@"
-	@stow -t ~ "$@"
+	stow -t ~ "$@"
 
 .PHONY: $(DIRS) all help
