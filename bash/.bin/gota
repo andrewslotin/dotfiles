@@ -7,5 +7,14 @@ goba || exit 1
 
 echo -e "\033[0;36mRunning tests\033[0m"
 go test $(go list ./... | fgrep -v 'vendor/')
+result=$?
 
-exit $?
+if hash ponysay 2> /dev/null; then
+  if [ $result -eq 0 ]; then
+    ponysay "All good!"
+  else
+    ponysay "Shit's broken"
+  fi
+fi
+
+exit $result
