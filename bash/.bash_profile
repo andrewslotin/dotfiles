@@ -6,7 +6,7 @@ GIT_PS1_SHOWDIRTYSTATE=true
 
 # Increase the number of open files in OS X
 # http://krypted.com/mac-os-x/maximum-files-in-mac-os-x/XS
-ulimit -n 512
+# ulimit -n 512
 
 source /usr/local/etc/bash_completion.d/git-completion.bash
 source /usr/local/etc/bash_completion.d/git-prompt.sh
@@ -22,6 +22,7 @@ export ALTERNATE_EDITOR=""
 export EDITOR="emacsclient -t"
 export TERM=xterm-256color
 export PATH=$HOME/.bin:/usr/local/sbin:/usr/local/bin:$PATH:$GOPATH/bin:$HOME/.cargo/bin
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
 alias e="$EDITOR"
 alias emacs="emacs -nw"
@@ -82,3 +83,10 @@ complete -o nospace -F __ssh_complete ssh
 complete -o nospace -F __ssh_complete scp
 
 ### End of ssh completion ###
+
+###############################################
+###           git command aliases           ###
+###############################################
+alias glm="git log $(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@').."
+alias gs="git status"
+alias gl1="git log -1 --stat"
