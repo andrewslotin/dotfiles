@@ -8,8 +8,9 @@ GIT_PS1_SHOWDIRTYSTATE=true
 # http://krypted.com/mac-os-x/maximum-files-in-mac-os-x/XS
 # ulimit -n 512
 
-source /usr/local/etc/bash_completion.d/git-completion.bash
-source /usr/local/etc/bash_completion.d/git-prompt.sh
+eval "$(/opt/homebrew/bin/brew shellenv)"
+source $(brew --prefix)/etc/bash_completion.d/git-completion.bash
+source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
 source "$HOME/.fzf.bash"
 
 export JAVA_HOME="$(/usr/libexec/java_home)"
