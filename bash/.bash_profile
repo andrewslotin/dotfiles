@@ -11,7 +11,6 @@ GIT_PS1_SHOWDIRTYSTATE=true
 eval "$(/opt/homebrew/bin/brew shellenv)"
 source $(brew --prefix)/etc/bash_completion.d/git-completion.bash
 source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
-source "$HOME/.fzf.bash"
 
 export JAVA_HOME="$(/usr/libexec/java_home)"
 export GOPATH=$HOME/Development/Go
@@ -36,6 +35,7 @@ fi
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.bashrc" ]] && source ~/.bashrc
+[[ -s "$HOME/.fzf.bash" ]] && source "$HOME/.fzf.bash"
 
 ###############################################
 ### gocd -- navigate Go packages in $GOPATH ###
