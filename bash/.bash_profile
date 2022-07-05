@@ -12,14 +12,14 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 source $(brew --prefix)/etc/bash_completion.d/git-completion.bash
 source $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
 
-export JAVA_HOME="$(/usr/libexec/java_home)"
-export GOPATH=$HOME/Development/Go
+hash javac 2>/dev/null && export JAVA_HOME="$(/usr/libexec/java_home 2>/dev/null)"
+hash go 2>/dev/null && export GOPATH=$HOME/Development/Go
 
 export NLS_LANG="AMERICAN_AMERICA.UTF8"
 export GIT_BRANCH_NAME_MAX_LENGTH=100
 export PS1="\u:${PATH_COLOR}\W${NORMAL}\$(__git_ps1 \" [${GIT_BRANCH_COLOR}%0.${GIT_BRANCH_NAME_MAX_LENGTH}s${NORMAL}]\")\$ "
 export ALTERNATE_EDITOR=""
-export EDITOR="emacsclient -t"
+hash emacsclient 2>/dev/null && export EDITOR="emacsclient -t"
 export TERM=xterm-256color
 export PATH=$HOME/.bin:/usr/local/sbin:/usr/local/bin:$PATH:$GOPATH/bin:$HOME/.cargo/bin
 export BASH_SILENCE_DEPRECATION_WARNING=1
@@ -49,7 +49,7 @@ function __gocd_complete() {
   COMPREPLY=()
 
   local cur="${COMP_WORDS[COMP_CWORD]}"
-  
+
   COMPREPLY=( $(for pkg in $( echo "${GOPATH[@]}/src/$cur*/" ); do echo ${pkg#$GOPATH/src/}; done) )
 
   return 0
@@ -72,7 +72,7 @@ function __ssh_complete()
     local user=${cur%%@*}
     local prefix="@"
   fi
-  
+
   local opts=$(awk '{split($1,hosts,","); for (i in hosts) {if (hosts[i] !~ /[0-9]+(\.[0-9]+){3}/) print hosts[i]}}' "$HOME/.ssh/known_hosts" | sort | uniq)
 
   COMPREPLY=( $(compgen -W "${opts}" -P "${prefix}" -- "${cur#*@}") )
