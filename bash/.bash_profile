@@ -21,8 +21,14 @@ export PS1="\u:${PATH_COLOR}\W${NORMAL}\$(__git_ps1 \" [${GIT_BRANCH_COLOR}%0.${
 export ALTERNATE_EDITOR=""
 hash emacsclient 2>/dev/null && export EDITOR="emacsclient -t"
 export TERM=xterm-256color
+<<<<<<< HEAD
 export PATH=$HOME/.bin:/usr/local/sbin:/usr/local/bin:$PATH:$GOPATH/bin:$HOME/.cargo/bin
 export BASH_SILENCE_DEPRECATION_WARNING=1
+=======
+export PATH=$HOME/.bin:/usr/local/sbin:/usr/local/bin:$PATH:$GOPATH/bin:$HOME/.cargo/bin:$GEM_HOME/bin
+
+export HOMEBREW_NO_AUTO_UPDATE=1
+>>>>>>> 5dbe21d (Add GEM_HOME/bin to the PATH)
 
 alias e="$EDITOR"
 alias emacs="emacs -nw"
