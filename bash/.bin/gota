@@ -6,7 +6,7 @@ echo -e "\033[0;36mChecking for compile-time errors\033[0m"
 goba || exit 1
 
 echo -e "\033[0;36mRunning tests\033[0m"
-go test $(go list ./... | fgrep -v 'vendor/')
+go test ./...
 result=$?
 
 if hash ponysay 2> /dev/null; then

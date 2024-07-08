@@ -1,9 +1,5 @@
 #!/bin/bash
 
-if [ $# -gt 0 ] ; then
-  go test -gocheck.f="$@"
-else
-  go test
-fi
+go test
 
 exit $?
